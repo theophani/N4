@@ -6,7 +6,6 @@ var TestSuite = (function () {
     var p = d.createElement('p');
     p.innerHTML = output;
     consoleDiv.appendChild(p);
-    console.log(p);
   };
 
   var _assert = (function () {
