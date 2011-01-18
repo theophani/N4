@@ -10,22 +10,25 @@ var TestSuite = (function () {
   };
 
   var _assert = (function () {
+    
+    var check = function(condition, comment) {
+      var results = d.getElementById('results');
+      var p = d.createElement('p');
+      p.innerHTML   = condition ? 'true' : 'false';
+      p.style.color = condition ? 'green' : 'red';
+      results.appendChild(p);
+      console.log(p);
+      if (comment !== undefined) {
+        log('&nbsp;&nbsp;&nbsp;&nbsp;' + 'Note: ' + comment); 
+      }
+    };
+    
     return {
       equals : function (a, b, comment) {
-        // check and report
-        var results = d.getElementById('results');
-        var p = d.createElement('p');
-        p.innerHTML = a === b ? 'true' : 'false';
-        results.appendChild(p);
-        console.log(p);
+        check(a === b, comment);
       },
       notEquals : function (a, b, comment) {
-        // check and report
-        var results = d.getElementById('results');
-        var p = d.createElement('p');
-        p.innerHTML = a !== b ? 'true' : 'false';
-        results.appendChild(p);
-        console.log(p);
+        check(a !== b, comment);
       }
     };
   }());
@@ -33,7 +36,7 @@ var TestSuite = (function () {
   var _module = (function () {
     return {
       test : function (assertion, assert) {
-       log('&nbsp;&nbsp;&nbsp;&nbsp;' + 'Testing: ' + assertion);
+       log('&nbsp;&nbsp;' + 'Testing: ' + assertion);
        assert(_assert);
       },
       before : function (f) {
